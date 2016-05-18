@@ -47,7 +47,7 @@ public class ImageDaoHibernate implements ImageDao {
     
     @Autowired
     private SessionFactory sessionFactory;
-    
+
     private Session currentSession() {
         return sessionFactory.getCurrentSession();
     }
@@ -55,7 +55,7 @@ public class ImageDaoHibernate implements ImageDao {
     @Override
     @Transactional(readOnly = true)
     public List<Image> list() {
-        log.debug("List of images");
+        log.info("List of images");
         Query query = currentSession().getNamedQuery("images");
         List<Image> images = query.list();
         return images;
@@ -63,7 +63,7 @@ public class ImageDaoHibernate implements ImageDao {
 
     @Override
     public Image create(Image image) {
-        log.debug("Creating image");
+        log.info("Creating image");
         currentSession().save(image);
         return image;
     }
@@ -71,14 +71,14 @@ public class ImageDaoHibernate implements ImageDao {
     @Override
     @Transactional(readOnly = true)
     public Image get(Long id) {
-        log.debug("Getting image {}", id);
+        log.info("Getting image {}", id);
         Image image = (Image) currentSession().get(Image.class, id);
         return image;
     }
 
     @Override
     public void delete(Image image) {
-        log.debug("Deleting image {}", image.getName());
+        log.info("Deleting image {}", image.getName());
         currentSession().delete(image);
     }
     
