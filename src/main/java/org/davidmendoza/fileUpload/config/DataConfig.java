@@ -15,6 +15,7 @@
  */
 package org.davidmendoza.fileUpload.config;
 
+import org.apache.commons.dbcp.BasicDataSource;
 import org.hibernate.SessionFactory;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -33,13 +34,13 @@ import org.springframework.transaction.annotation.EnableTransactionManagement;
 
 import javax.sql.DataSource;
 import java.util.Properties;
-import org.apache.commons.dbcp.BasicDataSource;
 
 @Configuration
 @EnableTransactionManagement
 public class DataConfig {
 
     private static final Logger log = LoggerFactory.getLogger(DataConfig.class);
+
     @Autowired
     private SessionFactory sessionFactory;
 
