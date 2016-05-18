@@ -178,9 +178,11 @@ public class ImageController {
     public @ResponseBody List delete(@PathVariable Long id) {
         Image image = imageDao.get(id);
         File imageFile = new File(fileUploadDirectory+"/"+image.getNewFilename());
-        imageFile.delete();
+        boolean deleteImage = imageFile.delete();
+        log.info("delete imageFile: {}", deleteImage);
         File thumbnailFile = new File(fileUploadDirectory+"/"+image.getThumbnailFilename());
-        thumbnailFile.delete();
+        boolean deleteThumb = thumbnailFile.delete();
+        log.info("delete thumbnailFile: {}", deleteThumb);
         imageDao.delete(image);
         List<Map<String, Object>> results = new ArrayList<>();
         Map<String, Object> success = new HashMap<>();
